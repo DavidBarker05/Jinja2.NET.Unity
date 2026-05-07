@@ -1,4 +1,5 @@
-﻿# Jinja2.NET
+﻿# Jinja2.NET.Unity
+In no way do I claim this code as my own. This is a fork of [Jinja2.NET](https://github.com/AlexNek/Jinja2.NET) by AlexNek. I only did this so that the code would work with unity as a package. This README also containt text from [Jinja2.NET's README](https://github.com/AlexNek/Jinja2.NET/blob/master/README.md). This was a once of project to get this setup to work in Unity for one of my assignments so I won't be maintaining this. Feel free to fork this repository and make your own changes if you want to.
 
 **Jinja2.NET** is a native .NET implementation of the popular [Jinja2](https://jinja.palletsprojects.com/) Python templating language. It enables powerful, expressive, and maintainable text rendering directly within .NET applications — without relying on embedded Python runtimes or limited Liquid-like engines.
 
@@ -29,10 +30,12 @@ While existing .NET templating libraries like [Scriban](https://github.com/scrib
 
 ## Installation
 
-You can install via NuGet (coming soon):
+Add this as a package with Unity's Package Manager. Click the plus button and choose `Install package from git URL...`
 
-```bash
-dotnet add package Jinja2.NET
+Then type or paste this in:
+
+```
+https://github.com/DavidBarker05/Jinja2.NET.Unity.git?path=/unity-package/com.jinja2net.unity
 ```
 ---
 
@@ -362,7 +365,7 @@ Jinja2's scoping rules for `for` loops and `set` blocks are strict and well-defi
 
 ## Status
 
-Jinja2.NET is under active development with a focus on correctness, extensibility, and compatibility with standard Jinja2 behavior. It is not a drop-in parser for all templates yet, but already supports:
+Jinja2.NET is under active development by AlexNek with a focus on correctness, extensibility, and compatibility with standard Jinja2 behavior. It is not a drop-in parser for all templates yet, but already supports:
 
 * Most expressions and filters
 * Set and loop blocks
@@ -370,23 +373,19 @@ Jinja2.NET is under active development with a focus on correctness, extensibilit
 
 Advanced features such as macros, includes, blocks and template inheritance are planned for the future. They will be implemented if you are interested.
 
+For myself, I most likely won't be maintaining this project so this comes as is for me.
 
 
 ---
 
 ## License
 
-This project is licensed under the MIT License — free for commercial and personal use.
+This project is licensed under the MIT License by AlexNek — free for commercial and personal use.
 
 ---
 
 ## Contributing
 
-We welcome contributions! If you find a bug or want to help implement a missing feature, feel free to open an issue or submit a pull request.
+If there are any issues with the project feel free to fork this repository and make the changes that you need. Or you can help AlexNek by opening or submitting a pull request on his GitHub page.
 
 For compatibility details, see the tests: [Jinja2.NET.Tests/TemplateTests.cs](./Jinja2.NET.Tests/TemplateTests.cs)
-
-## History
-- 1.4.0: Initial version. (Sorry, it was a copy/paste error, but I cannot roll it back on NuGet)
-- 1.4.1: nuget package links update
-- 
