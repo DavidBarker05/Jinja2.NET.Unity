@@ -1,5 +1,5 @@
 ﻿# Jinja2.NET.Unity
-In no way do I claim this code as my own. This is a fork of [Jinja2.NET](https://github.com/AlexNek/Jinja2.NET) by AlexNek. I only did this so that the code would work with unity as a package. This README also containt text from [Jinja2.NET's README](https://github.com/AlexNek/Jinja2.NET/blob/master/README.md). This was a once off project to make this work in Unity for one of my assignments so I won't be maintaining this. Feel free to fork this repository and make your own changes though.
+In no way do I claim this code as my own. This is a fork of [Jinja2.NET](https://github.com/AlexNek/Jinja2.NET) by AlexNek. I only did this so that the code would work with unity as a package. This README also contains text from [Jinja2.NET's README](https://github.com/AlexNek/Jinja2.NET/blob/master/README.md). This was a once off project to make this work in Unity for one of my assignments so I won't be maintaining this. Feel free to fork this repository and make your own changes though.
 
 ---
 
