@@ -1,0 +1,14 @@
+{
+  "name": "com.jinja2net.unity",
+  "version": "1.0.0",
+  "displayName": "Jinja2.NET",
+  "description": "",
+  "unity": "2021.3",
+  "license": "MIT",
+  "licensesUrl": "https://github.com/DavidBarker05/Jinja2.NET/blob/master/LICENSE",
+  "documentationUrl": "https://github.com/DavidBarker05/Jinja2.NET/blob/master/README.md",
+  "author": {
+    "name": "DavidBarker05",
+    "url": "https://github.com/DavidBarker05/Jinja2.NET"
+  }
+} 
