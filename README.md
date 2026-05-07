@@ -21,6 +21,7 @@ While existing .NET templating libraries like [Scriban](https://github.com/scrib
 
 ## Features
 
+### Jinja2.NET
 *  Full Jinja2 syntax: Includes `{{ ... }}`, `{% ... %}`, `{# ... #}` blocks
 *  Attribute and dictionary access: Support for nested data
 *  Chained filters: Compatible with built-in filters like `upper`, `join`, `trim`, etc.
@@ -30,6 +31,8 @@ While existing .NET templating libraries like [Scriban](https://github.com/scrib
 *  No Python dependency: Written in native C# (WIP)
 *  Spaces, tabs, and newlines outside `{{ ... }}` and `{% ... %}` are preserved by default, matching Jinja2.
 *  Jinja2-style whitespace control (`{%- ... -%}` and `{{- ... -}}`) trims whitespace only outside the tag, not inside.
+### Jinja2.NET.Unity
+*  `.j2` file are read as `TextAsset` files by Unity and so can be loaded using `Resources.Load<TextAsset>()` or any other use that `TextAsset` has
 ---
 
 ## Installation
