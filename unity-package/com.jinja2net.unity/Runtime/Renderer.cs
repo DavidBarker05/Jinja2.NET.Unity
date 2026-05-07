@@ -1,10 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+#nullable enable
+
 using Jinja2.NET.Interfaces;
 using Jinja2.NET.Nodes;
 using Jinja2.NET.Nodes.Renderers;
 using Jinja2.NET.Nodes.Renderers.BlockNodeSupport;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
 
 namespace Jinja2.NET
 {
@@ -13,27 +16,26 @@ namespace Jinja2.NET
 		private readonly StringBuilder _output = new();
 		private readonly Dictionary<Type, INodeRenderer> _renderers = new();
 		public IVariableContext Context { get; }
-		public IReadOnlyDictionary<string, Func<object, object[], object>> CustomFilters { get; } // Add this
+		public IReadOnlyDictionary<string, Func<object?, object?[], object>> CustomFilters { get; } // Add this
 		public IScopeManager ScopeManager { get; }
 
 		public Renderer(IVariableContext context, IScopeManager? scopeManager = null)
-			: this(context, scopeManager, new Dictionary<string, Func<object, object[], object>>())
+			: this(context, scopeManager, new Dictionary<string, Func<object?, object?[], object>>())
 		{
 		}
 
 		public Renderer(IVariableContext context,
-			Dictionary<string, Func<object, object[], object>> customFilters) // Add this constructor
+			Dictionary<string, Func<object?, object?[], object>> customFilters) // Add this constructor
 			: this(context, null, customFilters)
 		{
 		}
 
 		public Renderer(IVariableContext context, IScopeManager? scopeManager,
-			Dictionary<string, Func<object, object[], object>> customFilters)
+			Dictionary<string, Func<object?, object?[], object>> customFilters)
 		{
 			Context = context;
 			ScopeManager = scopeManager ?? new ScopeManager();
-			CustomFilters = customFilters?.AsReadOnly() ??
-							new Dictionary<string, Func<object, object[], object>>().AsReadOnly();
+			CustomFilters = new ReadOnlyDictionary<string, Func<object?, object?[], object>>(customFilters ?? new Dictionary<string, Func<object?, object?[], object>>());
 
 			// Register all required node renderers
 			_renderers[typeof(BlockNode)] = new BlockNodeRenderer();
@@ -83,3 +85,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

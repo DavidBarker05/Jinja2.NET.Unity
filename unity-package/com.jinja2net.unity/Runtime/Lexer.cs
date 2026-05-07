@@ -1,8 +1,9 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET
@@ -436,7 +437,7 @@ namespace Jinja2.NET
 			rawBlockStart = -1;
 			rawBlockEnd = -1;
 
-			if (!IsBlockDelimiter(startDelimiter))
+			if (startDelimiter == null || !IsBlockDelimiter(startDelimiter))
 			{
 				return false;
 			}
@@ -740,3 +741,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

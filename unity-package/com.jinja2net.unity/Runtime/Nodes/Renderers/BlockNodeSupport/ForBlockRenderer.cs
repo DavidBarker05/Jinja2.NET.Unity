@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Jinja2.NET.Interfaces;
 
@@ -180,3 +183,5 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 		}
 	}
 }
+
+#nullable restore

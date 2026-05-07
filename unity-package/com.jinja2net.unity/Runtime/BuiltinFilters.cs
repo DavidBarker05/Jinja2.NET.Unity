@@ -1,7 +1,10 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Jinja2.NET
 {
@@ -24,7 +27,7 @@ namespace Jinja2.NET
 		// Other magic values
 		private const string EmptyString = "";
 
-		private static readonly Dictionary<string, Func<object?, object[], object>> _filters =
+		private static readonly Dictionary<string, Func<object?, object?[], object?>> _filters =
 			new()
 			{
 				[UpperFilter] = (value, args) => value?.ToString()?.ToUpper(),
@@ -42,7 +45,7 @@ namespace Jinja2.NET
 				[LastFilter] = (value, args) => DoLastFilter(value)
 			};
 
-		public static object ApplyFilter(string filterName, object? value, object[] arguments)
+		public static object? ApplyFilter(string filterName, object? value, object?[] arguments)
 		{
 			if (_filters.TryGetValue(filterName, out var filter))
 			{
@@ -57,7 +60,7 @@ namespace Jinja2.NET
 			return _filters.ContainsKey(filterName);
 		}
 
-		private static string Capitalize(string value)
+		private static string? Capitalize(string? value)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -67,7 +70,7 @@ namespace Jinja2.NET
 			return char.ToUpper(value[0]) + value.Substring(1).ToLower();
 		}
 
-		private static object DoFirstFilter(object value)
+		private static object? DoFirstFilter(object? value)
 		{
 			if (value is IEnumerable enumerable && !(value is string))
 			{
@@ -77,7 +80,7 @@ namespace Jinja2.NET
 			return value;
 		}
 
-		private static string DoJoinFilter(object value, object[] args)
+		private static string DoJoinFilter(object? value, object?[] args)
 		{
 			if (value is not IEnumerable enumerable || value is string)
 			{
@@ -89,7 +92,7 @@ namespace Jinja2.NET
 			return string.Join(separator, stringItems);
 		}
 
-		private static object DoLastFilter(object value)
+		private static object? DoLastFilter(object? value)
 		{
 			if (value is IEnumerable enumerable && !(value is string))
 			{
@@ -99,7 +102,7 @@ namespace Jinja2.NET
 			return value;
 		}
 
-		private static string DoReplaceFilter(string value, object[] args)
+		private static string? DoReplaceFilter(string? value, object?[] args)
 		{
 			if (string.IsNullOrEmpty(value) || args.Length < 2)
 			{
@@ -109,7 +112,7 @@ namespace Jinja2.NET
 			return value.Replace(args[0]?.ToString() ?? EmptyString, args[1]?.ToString() ?? EmptyString);
 		}
 
-		private static object DoReverseFilter(object value)
+		private static object? DoReverseFilter(object? value)
 		{
 			return value switch
 			{
@@ -119,7 +122,7 @@ namespace Jinja2.NET
 			};
 		}
 
-		private static object DoSortFilter(object value)
+		private static object? DoSortFilter(object? value)
 		{
 			if (value is IEnumerable enumerable && !(value is string))
 			{
@@ -129,7 +132,7 @@ namespace Jinja2.NET
 			return value;
 		}
 
-		private static int GetLength(object value)
+		private static int GetLength(object? value)
 		{
 			return value switch
 			{
@@ -140,7 +143,7 @@ namespace Jinja2.NET
 			};
 		}
 
-		private static string ToTitleCase(string value)
+		private static string? ToTitleCase(string? value)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
@@ -151,3 +154,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

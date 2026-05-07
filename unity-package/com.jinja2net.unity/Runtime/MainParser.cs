@@ -1,5 +1,8 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Jinja2.NET.Nodes;
 using Jinja2.NET.Parsers;
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
@@ -11,7 +14,7 @@ namespace Jinja2.NET
 		private readonly LexerConfig _config;
 		protected readonly TagParserRegistry? _tagRegistry;
 		protected ExpressionParser? _expressionParser;
-		private List<Token> _lastTokens;
+		private List<Token> _lastTokens = new();
 		protected StatementParser? _statementParser;
 		public LexerConfig Config => _config;
 		public ExpressionParser? ExpressionParser => _expressionParser;
@@ -256,3 +259,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

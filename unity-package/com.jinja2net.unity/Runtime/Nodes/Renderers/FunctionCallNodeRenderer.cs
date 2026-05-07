@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Jinja2.NET.Interfaces;
 
@@ -49,18 +52,18 @@ namespace Jinja2.NET.Nodes.Renderers
 				.ToList();
 		}
 
-		private static BlockNode FindRecursiveTemplate(IScopeManager scopeManager)
+		private static BlockNode? FindRecursiveTemplate(IScopeManager scopeManager)
 		{
 			return FindTemplateInCurrentScope(scopeManager) ?? FindTemplateInParentScope(scopeManager);
 		}
 
-		private static BlockNode FindTemplateInCurrentScope(IScopeManager scopeManager)
+		private static BlockNode? FindTemplateInCurrentScope(IScopeManager scopeManager)
 		{
 			var currentScope = scopeManager.CurrentScope();
 			return TryGetTemplateFromScope(currentScope);
 		}
 
-		private static BlockNode FindTemplateInParentScope(IScopeManager scopeManager)
+		private static BlockNode? FindTemplateInParentScope(IScopeManager scopeManager)
 		{
 			var parentScope = scopeManager.ParentScope();
 			return TryGetTemplateFromScope(parentScope);
@@ -242,3 +245,5 @@ namespace Jinja2.NET.Nodes.Renderers
 		}
 	}
 }
+
+#nullable restore

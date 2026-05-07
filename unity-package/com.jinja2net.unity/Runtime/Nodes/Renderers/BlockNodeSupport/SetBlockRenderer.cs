@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
@@ -46,17 +46,19 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 
 		private static bool IsAtGlobalScope(IScopeManager scopeManager)
 		{
-			// Only one scope on the stack means global
-			// Try to cast to dynamic to support any IScopeManager implementation
-			try
+			// One scope means global.
+			// Prefer ScopeDepth when an implementation exposes it.
+			var scopeDepthProp = scopeManager.GetType().GetProperty("ScopeDepth");
+			if (scopeDepthProp?.PropertyType == typeof(int))
 			{
-				return ((dynamic)scopeManager).ScopeDepth == 1;
+				var value = scopeDepthProp.GetValue(scopeManager);
+				if (value is int depth)
+				{
+					return depth == 1;
+				}
 			}
-			catch
-			{
-				// Fallback: compare CurrentScope and ParentScope references
-				return ReferenceEquals(scopeManager.CurrentScope(), scopeManager.ParentScope());
-			}
+			// Fallback for implementations without ScopeDepth
+			return ReferenceEquals(scopeManager.CurrentScope(), scopeManager.ParentScope());
 		}
 	}
 }

@@ -1,5 +1,8 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Jinja2.NET
 {
@@ -47,3 +50,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

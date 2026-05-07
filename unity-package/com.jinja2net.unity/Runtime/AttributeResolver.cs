@@ -1,4 +1,5 @@
-using System;
+#nullable enable
+
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -36,3 +37,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

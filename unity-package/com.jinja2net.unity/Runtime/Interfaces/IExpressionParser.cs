@@ -4,6 +4,6 @@ namespace Jinja2.NET.Interfaces
 {
 	public interface IExpressionParser
 	{
-		ExpressionNode Parse(TokenIterator tokens, ETokenType stopTokenType = ETokenType.BlockEnd, params string[] stopKeywords = null);
+		ExpressionNode Parse(TokenIterator tokens, ETokenType stopTokenType = ETokenType.BlockEnd, params string[] stopKeywords);
 	}
 }

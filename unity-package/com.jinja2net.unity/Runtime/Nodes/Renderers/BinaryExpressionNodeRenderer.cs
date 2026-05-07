@@ -1,6 +1,9 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET.Nodes.Renderers
@@ -153,11 +156,24 @@ namespace Jinja2.NET.Nodes.Renderers
 			throw new InvalidOperationException($"Cannot floor divide {left.GetType()} and {right.GetType()}");
 		}
 
-		private static bool In(object left, object? right)
+		private static bool In(object? left, object? right)
 		{
 			if (right == null)
 			{
 				return false;
+			}
+
+			// Closer to jinja for checking if string contains character first
+			if (right is string str)
+			{
+				if (left is string s)
+				{
+					return str.Contains(s);
+				}
+				if (left is char c)
+				{
+					return str.IndexOf(c) >= 0;
+				}
 			}
 
 			if (right is IEnumerable enumerable)
@@ -171,11 +187,6 @@ namespace Jinja2.NET.Nodes.Renderers
 				}
 
 				return false;
-			}
-
-			if (right is string str && left is string s)
-			{
-				return str.Contains(s);
 			}
 
 			throw new InvalidOperationException($"Cannot perform 'in' with {left?.GetType()} and {right.GetType()}");
@@ -314,3 +325,5 @@ namespace Jinja2.NET.Nodes.Renderers
 		}
 	}
 }
+
+#nullable restore

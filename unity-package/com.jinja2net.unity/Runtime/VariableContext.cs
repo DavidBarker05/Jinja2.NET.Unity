@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -34,3 +36,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

@@ -1,5 +1,5 @@
 using System;
-using System.Collection.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using Jinja2.NET.Interfaces;
@@ -9,7 +9,7 @@ namespace Jinja2.NET.Parsers
 {
 	public class ExpressionParser : IExpressionParser
 	{
-		public virtual ExpressionNode Parse(TokenIterator tokens, ETokenType stopTokenType = ETokenType.BlockEnd)
+		public virtual ExpressionNode Parse(TokenIterator tokens, ETokenType stopTokenType = ETokenType.BlockEnd, params string[] stopKeywords)
 		{
 			tokens.SkipWhitespace();
 			if (tokens.IsAtEnd())

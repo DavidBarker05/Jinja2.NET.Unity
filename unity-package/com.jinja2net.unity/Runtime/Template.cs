@@ -1,8 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+#nullable enable
+
 using Jinja2.NET.Interfaces;
 using Jinja2.NET.Nodes;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
 
 namespace Jinja2.NET
 {
@@ -12,9 +15,9 @@ namespace Jinja2.NET
 	/// </summary>
 	public class Template
 	{
-		private readonly TemplateNode _ast;
+		private readonly TemplateNode _ast = new();
 
-		private readonly Dictionary<string, Func<object, object[], object>> _customFilters =
+		private readonly Dictionary<string, Func<object?, object?[], object>> _customFilters =
 			new(StringComparer.OrdinalIgnoreCase);
 
 		private readonly MainParser _parser;
@@ -24,7 +27,7 @@ namespace Jinja2.NET
 
 		// Properties for debugging and introspection
 		public TemplateNode Ast => _ast;
-		public IReadOnlyDictionary<string, Func<object, object[], object>> CustomFilters => _customFilters.AsReadOnly();
+		public IReadOnlyDictionary<string, Func<object?, object?[], object>> CustomFilters => new ReadOnlyDictionary<string, Func<object?, object?[], object>>(_customFilters);
 		public MainParser Parser => _parser;
 		public string Source => _source;
 		public IReadOnlyList<Token> Tokens => _tokens;
@@ -47,11 +50,7 @@ namespace Jinja2.NET
 
 			// Parse and store results
 			var result = _parser.ParseWithTokens(source);
-			if (result.Node != null)
-			{
-				_ast = result.Node;
-			}
-
+			_ast = result.Node ?? throw new TemplateParsingException("Parser returned null AST.");
 			_tokens = result.Tokens;
 		}
 
@@ -127,7 +126,7 @@ namespace Jinja2.NET
 			}
 		}
 
-		public void RegisterFilter(string name, Func<object, object[], object> filter)
+		public void RegisterFilter(string name, Func<object?, object?[], object> filter)
 		{
 			if (string.IsNullOrWhiteSpace(name))
 			{
@@ -268,7 +267,7 @@ namespace Jinja2.NET
 		}
 
 		// Clone template with modifications
-		public Template WithCustomFilters(Dictionary<string, Func<object, object[], object>> filters)
+		public Template WithCustomFilters(Dictionary<string, Func<object?, object?[], object>> filters)
 		{
 			var newTemplate = new Template(_source, _parser.Config, _rendererFactory, _parser);
 			foreach (var filter in _customFilters)
@@ -290,3 +289,5 @@ namespace Jinja2.NET
 		}
 	}
 }
+
+#nullable restore

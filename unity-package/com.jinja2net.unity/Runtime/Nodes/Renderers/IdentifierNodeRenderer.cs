@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Diagnostics;
 using Jinja2.NET.Interfaces;
@@ -36,3 +38,5 @@ namespace Jinja2.NET.Nodes.Renderers
 		}
 	}
 }
+
+#nullable restore

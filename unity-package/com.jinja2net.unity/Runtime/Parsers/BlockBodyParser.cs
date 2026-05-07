@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 using Jinja2.NET.Nodes;
 

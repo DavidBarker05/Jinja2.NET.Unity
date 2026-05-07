@@ -1,4 +1,7 @@
+#nullable enable
+
 using System;
+using System.Linq;
 using System.Text;
 using Jinja2.NET.Interfaces;
 
@@ -14,7 +17,7 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 			var result = new StringBuilder(); // Collect output
 
 			// Render children and collect results
-			foreach (var child in node.Children ?? [])
+			foreach (var child in node.Children ?? Enumerable.Empty<ASTNode>())
 			{
 				var childResult = renderer.Visit(child); // Capture result
 				if (childResult != null)
@@ -27,3 +30,5 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 		}
 	}
 }
+
+#nullable restore

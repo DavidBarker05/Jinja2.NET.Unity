@@ -1,3 +1,5 @@
+#nullable enable
+
 namespace Jinja2.NET.Interfaces
 {
 	public interface ITagParserRegistry
@@ -5,3 +7,5 @@ namespace Jinja2.NET.Interfaces
 		ITagParser? GetParser(string tagName);
 	}
 }
+
+#nullable restore

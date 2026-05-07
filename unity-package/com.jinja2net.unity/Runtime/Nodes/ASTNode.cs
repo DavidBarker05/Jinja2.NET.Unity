@@ -1,3 +1,5 @@
+#nullable enable
+
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET.Nodes
@@ -7,3 +9,5 @@ namespace Jinja2.NET.Nodes
 		public abstract object? Accept(INodeVisitor visitor);
 	}
 }
+
+#nullable restore

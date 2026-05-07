@@ -1,5 +1,8 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET.Nodes
@@ -41,3 +44,5 @@ namespace Jinja2.NET.Nodes
 		}
 	}
 }
+
+#nullable restore

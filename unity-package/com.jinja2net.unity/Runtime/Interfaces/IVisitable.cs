@@ -1,3 +1,5 @@
+#nullable enable
+
 namespace Jinja2.NET.Interfaces
 {
 	public interface IVisitable
@@ -6,3 +8,5 @@ namespace Jinja2.NET.Interfaces
 		INodeRenderer GetRenderer();
 	}
 }
+
+#nullable restore

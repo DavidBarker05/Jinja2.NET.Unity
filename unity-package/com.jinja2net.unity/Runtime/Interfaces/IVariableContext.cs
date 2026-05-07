@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Collections.Generic;
 
 namespace Jinja2.NET.Interfaces
@@ -9,3 +11,5 @@ namespace Jinja2.NET.Interfaces
 		void SetAll(Dictionary<string, object> variables);
 	}
 }
+
+#nullable restore

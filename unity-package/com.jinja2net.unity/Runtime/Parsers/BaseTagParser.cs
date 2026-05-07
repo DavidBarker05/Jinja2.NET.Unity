@@ -1,4 +1,7 @@
+#nullable enable
+
 using System;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 using Jinja2.NET.Models;
 using Jinja2.NET.Nodes;
@@ -71,3 +74,5 @@ namespace Jinja2.NET.Parsers
 		}
 	}
 }
+
+#nullable restore

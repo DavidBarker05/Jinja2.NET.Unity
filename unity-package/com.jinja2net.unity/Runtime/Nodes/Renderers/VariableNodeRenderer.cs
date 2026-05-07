@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,3 +39,5 @@ namespace Jinja2.NET.Nodes.Renderers
 		}
 	}
 }
+
+#nullable restore

@@ -1,6 +1,8 @@
+#nullable enable
+
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Jinja2.NET.Interfaces;
 
@@ -41,7 +43,7 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 			return result.Length > 0 ? result.ToString() : null;
 		}
 
-		private static bool EvaluateCondition(object conditionResult)
+		private static bool EvaluateCondition(object? conditionResult)
 		{
 			return conditionResult switch
 			{
@@ -73,7 +75,7 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 					currentScope[kvp.Key] = kvp.Value;
 				}
 
-				foreach (var child in node.Children ?? [])
+				foreach (var child in node.Children ?? Enumerable.Empty<ASTNode>())
 				{
 					// Skip elif/else blocks when rendering main if content
 					if (child is BlockNode childBlock &&
@@ -120,7 +122,7 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 					currentScope[kvp.Key] = kvp.Value;
 				}
 
-				foreach (var child in node.Children ?? [])
+				foreach (var child in node.Children ?? Enumerable.Empty<ASTNode>())
 				{
 					if (child is not BlockNode childBlock)
 					{
@@ -165,3 +167,5 @@ namespace Jinja2.NET.Nodes.Renderers.BlockNodeSupport
 		}
 	}
 }
+
+#nullable restore

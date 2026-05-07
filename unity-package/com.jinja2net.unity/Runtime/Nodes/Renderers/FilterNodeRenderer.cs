@@ -1,4 +1,7 @@
+#nullable enable
+
 using System;
+using System.Linq;
 using Jinja2.NET.Interfaces;
 
 namespace Jinja2.NET.Nodes.Renderers
@@ -29,3 +32,5 @@ namespace Jinja2.NET.Nodes.Renderers
 		}
 	}
 }
+
+#nullable restore

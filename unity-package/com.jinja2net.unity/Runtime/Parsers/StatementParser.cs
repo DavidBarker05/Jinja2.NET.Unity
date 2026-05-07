@@ -1,4 +1,7 @@
+#nullable enable
+
 using System;
+using System.Linq;
 using System.Text;
 using Jinja2.NET.Interfaces;
 using Jinja2.NET.Nodes;
@@ -19,13 +22,13 @@ namespace Jinja2.NET.Parsers
 			_config = config ?? new LexerConfig();
 		}
 
-		public (ASTNode Node, ETokenType ConsumedStartMarkerType) Parse(TokenIterator tokens)
+		public (ASTNode? Node, ETokenType ConsumedStartMarkerType) Parse(TokenIterator tokens)
 		{
-			return Parse(tokens, []);
+			return Parse(tokens, Array.Empty<string>());
 		}
 
 
-		public (ASTNode Node, ETokenType ConsumedStartMarkerType) Parse(TokenIterator tokens, params string[] stopKeywords)
+		public (ASTNode? Node, ETokenType ConsumedStartMarkerType) Parse(TokenIterator tokens, params string[] stopKeywords)
 		{
 			//tokens.SkipWhitespace();
 			if (tokens.IsAtEnd() || tokens.Peek().Type == ETokenType.EOF)
@@ -57,7 +60,7 @@ namespace Jinja2.NET.Parsers
 			};
 		}
 
-		private (ASTNode, ETokenType) ParseBlock(TokenIterator tokens)
+		private (ASTNode?, ETokenType) ParseBlock(TokenIterator tokens)
 		{
 			var startToken = tokens.Consume(ETokenType.BlockStart);
 			var tagStartLocation = tokens.CurrentLocation;
@@ -164,3 +167,5 @@ namespace Jinja2.NET.Parsers
 		}
 	}
 }
+
+#nullable restore

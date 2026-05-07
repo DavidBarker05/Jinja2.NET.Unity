@@ -1,3 +1,5 @@
+#nullable enable
+
 using System;
 using System.Collections.Generic;
 
@@ -13,3 +15,5 @@ namespace Jinja2.NET
 		public TemplateParsingException(string message, Exception innerException) : base(message, innerException) { }
 	}
 }
+
+#nullable restore

@@ -1,4 +1,5 @@
 // TemplateNode.cs
+#nullable enable
 
 using System.Collections.Generic;
 using Jinja2.NET.Interfaces;
@@ -33,3 +34,5 @@ namespace Jinja2.NET.Nodes
 		}
 	}
 }
+
+#nullable restore
