@@ -2,7 +2,7 @@
   "name": "Jinja2.NET.Unity.Editor",
   "rootNamespace": "",
   "references": [],
-  "includePlatforms": [],
+  "includePlatforms": ["Editor"],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
   "overrideReferences": false,
